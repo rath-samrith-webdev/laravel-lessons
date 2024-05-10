@@ -21,11 +21,19 @@ Route::prefix("user")->group(function () {
     }); //Return all users
     Route::get('/{id}',function ($id){
         global $users;
-        return $users[$id];
+        if($id>count($users)){
+            return " user on index ".$id ." is not found";
+        }else{
+            return $users[$id];
+        }
     })->where("id","[0-9]+"); //Get user by index
     Route::get('/{name}',function ($name){
         global $users;
-        return array_filter($users,fn($user)=>$user['name']==$name);
+        $user= array_filter($users,fn($user)=>$user['name']==$name);
+        if(!$user){
+            return "User not found";
+        }
+        return $user;
     })->where("name","[a-z]+");//Get user by name
     Route::get('/user/{id}/posts/{index}',function ($id,$index){
         global $users;
