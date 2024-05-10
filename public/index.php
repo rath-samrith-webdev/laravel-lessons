@@ -43,6 +43,16 @@ require __DIR__.'/../vendor/autoload.php';
 | to this client's browser, allowing them to enjoy our application.
 |
 */
+$users = [
+    [
+        'name' => 'rady',
+        'posts' => ['Hello !', 'Good bye !'],
+    ],
+    [
+        'name' => 'him',
+        'posts' => ['How are you ?', 'I love mangos !'],
+    ],
+];
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 

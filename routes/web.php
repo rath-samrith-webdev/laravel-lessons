@@ -17,20 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix("product")->group(function () {
-    Route::get('/clothe',function (){
-        return "Hello this clothe product page";
+Route::prefix("user")->group(function () {
+    Route::get("/all",function (){
+        global $users;
+        $user_name = "";
+        foreach ($users as $user) {
+            $user_name.=$user['name']." ";
+        }
+        return "The users ".$user_name;
     });
-    Route::get('/shirt',function (){
-        return "Hello this shirt page";
-    });
-    Route::get('/clothe/name/{name}',function ($name){
-        return "The clothe you looking for " . $name;
-    })->where(['name' => '[A-Za-z]+']);
-    Route::get('/shirt/price/{name}',function ($name){
-        return "The clothe you looking for " . $name;
-    })->where(['name'=> '[0-9]+']);
 });
+
 
 Route::fallback(function(){
     return "404 Page not found";
