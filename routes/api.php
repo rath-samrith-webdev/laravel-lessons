@@ -35,7 +35,7 @@ Route::prefix("user")->group(function () {
         }
         return $user;
     })->where("name","[a-z]+");//Get user by name
-    Route::get('/user/{id}/posts/{index}',function ($id,$index){
+    Route::get('/{id}/posts/{index}',function ($id,$index){
         global $users;
         return $users[$id]["posts"]["$index"];
     });//Get post through post index from user index
