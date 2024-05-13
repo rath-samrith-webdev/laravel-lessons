@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about', function () {
+    $posts = Post::all();
+    return view('about', ['posts' => $posts]);
+});
+Route::get('/myview/{user}', function ($user) {
+    return view('myview', ['user' => $user]);
+});
+Route::get('/users',[UserController::class,'getAllUsers']);
