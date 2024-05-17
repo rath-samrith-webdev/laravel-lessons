@@ -17,7 +17,7 @@ class LoginController extends Controller
     public function __invoke(LoginRequest $request)
     {
         $user=User::where('email',$request->get('email'))->first();
-        if(!$user || !Hash::check($request->get('password'),$user->password)){
+        if(!auth()->attempt($request->only(['email','password']))){
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
