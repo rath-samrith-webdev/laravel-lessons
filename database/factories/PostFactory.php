@@ -19,6 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'body' => fake()->text(),
+            'user_id'=>1
         ];
     }
 }
