@@ -19,7 +19,7 @@ class PostResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'body'=>$this->body,
-            'poster'=>UserResource::make($this->user)
+            'poster'=>$this->user->name
         ];
     }
 }
