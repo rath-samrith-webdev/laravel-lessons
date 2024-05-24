@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/user', function () {
+    return "Hello User Page";
+});
+
+// Route::get('/about', function () {
+//     return "Hello About Page";
+// });
+Route::get('/about',[AboutController::class,'index']);
+Route::get('/morning',[AboutController::class,'sayMorning']);
+
+//today
+Route::get('/student',[StudentController::class,'index']);
+Route::get('/customer',[CustomerController::class,'index'])->name('customer');
