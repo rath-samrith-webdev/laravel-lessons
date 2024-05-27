@@ -18,6 +18,7 @@ class Category extends Model
     }
     public static function list(){
         return self::all();
+        //return self::orderByDesc()->get(); Order descending
     }
     public static function store($request, $id = null){
         $data = $request->only('name', 'description');
