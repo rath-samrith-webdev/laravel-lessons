@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
@@ -16,20 +16,20 @@ class LoginController extends Controller
      */
     public function __invoke(LoginRequest $request)
     {
-        $user=User::where('email',$request->email)->first(); //Select one user that has the same email
-        if(!$user || !Hash::check($request->password,$user->password)){ //Check if the user's password is matched with the request password
+        $user=User::where('email',$request->email)->first();
+        if(!$user || !Hash::check($request->password,$user->password)) {
             throw ValidationException::withMessages(
                 [
                     'email' => ['The provided credentials are incorrect.'],
                 ]
             );
-        }else{
-            return response()->json([
-                'success'=>true,
-                'status'=>200,
-                'message'=>'You are logged in successfully',
-                'data'=>$user
-            ]);
         }
+        return response()->json([
+            'success'=>true,
+            'status'=>200,
+            'message'=>'You are logged in successfully',
+            'data'=>$user,
+            'token'=>$user->createToken('my-app-token')->plainTextToken, //This will generate the token for user to access
+        ]);
     }
 }
