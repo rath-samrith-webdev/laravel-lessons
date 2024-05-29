@@ -21,7 +21,7 @@ class ShowStudentResource extends JsonResource
             'age' => $this->age,
             'province' => $this->province,
             'score' => $this->score,
-            'phone' => $this->phone,
+            'phone' => $this->phone_number,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -22,33 +22,48 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/student/list',[StudentController::class,'index'])->name('student.list');
-Route::post('/student/create',[StudentController::class,'store'])->name('student.create');
-Route::get('/student/show/{id}',[StudentController::class,'show'])->name('student.show');
-Route::put('/student/update/{id}',[StudentController::class,'update'])->name('student.update');
-Route::delete('/student/delete/{id}',[StudentController::class,'destroy'])->name('student.destroy');
 
+//Student Routes
+Route::prefix('student')->group(function () {
+    Route::get('/list',[StudentController::class,'index'])->name('student.list');
+    Route::post('/create',[StudentController::class,'store'])->name('student.create');
+    Route::get('/show/{id}',[StudentController::class,'show'])->name('student.show');
+    Route::put('/update/{id}',[StudentController::class,'update'])->name('student.update');
+    Route::delete('/delete/{id}',[StudentController::class,'destroy'])->name('student.destroy');
+});
 
-Route::get('/category/list',[CategoryController::class,'index'])->name('category.list');
-Route::post('/category/create',[CategoryController::class,'store'])->name('category.create');
-Route::get('/category/show/{id}',[CategoryController::class,'show'])->name('category.show');
-Route::put('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
-Route::delete('/category/delete/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
+//Category Routes
+Route::prefix('category')->group(function(){
+    Route::get('/list',[CategoryController::class,'index'])->name('category.list');
+    Route::post('/create',[CategoryController::class,'store'])->name('category.create');
+    Route::get('/show/{id}',[CategoryController::class,'show'])->name('category.show');
+    Route::put('/update/{id}',[CategoryController::class,'update'])->name('category.update');
+    Route::delete('/delete/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
+});
 
-Route::get('/product/list',[ProductController::class,'index'])->name('product.list');
-Route::post('/product/create',[ProductController::class,'store'])->name('product.create');
-Route::get('/product/show/{id}',[ProductController::class,'show'])->name('product.show');
-Route::put('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
-Route::delete('/product/delete/{id}',[ProductController::class,'destroy'])->name('product.destroy');
+//Products Routes
+Route::prefix('product')->group(function(){
+    Route::get('/list',[ProductController::class,'index'])->name('product.list');
+    Route::post('/create',[ProductController::class,'store'])->name('product.create');
+    Route::get('/show/{id}',[ProductController::class,'show'])->name('product.show');
+    Route::put('/update/{id}',[ProductController::class,'update'])->name('product.update');
+    Route::delete('/delete/{id}',[ProductController::class,'destroy'])->name('product.destroy');
+});
 
-Route::get('/discount/list',[DiscountController::class,'index'])->name('discount.list');
-Route::post('/discount/create',[DiscountController::class,'store'])->name('discount.create');
-Route::get('/discount/show/{id}',[DiscountController::class,'show'])->name('discount.show');
-Route::put('/discount/update/{id}',[DiscountController::class,'update'])->name('discount.update');
-Route::delete('/discount/delete/{id}',[DiscountController::class,'destroy'])->name('discount.destroy');
+//Discount Routes
+Route::prefix('discount')->group(function(){
+    Route::get('/list',[DiscountController::class,'index'])->name('discount.list');
+    Route::post('/create',[DiscountController::class,'store'])->name('discount.create');
+    Route::get('/show/{id}',[DiscountController::class,'show'])->name('discount.show');
+    Route::put('/update/{id}',[DiscountController::class,'update'])->name('discount.update');
+    Route::delete('/delete/{id}',[DiscountController::class,'destroy'])->name('discount.destroy');
+});
 
-Route::get('/order/list',[OrderController::class,'index'])->name('order.list');
-Route::post('/order/create',[OrderController::class,'store'])->name('order.create');
-Route::get('/order/show/{id}',[OrderController::class,'show'])->name('order.show');
-Route::put('/order/update/{id}',[OrderController::class,'update'])->name('order.update');
-Route::delete('/order/delete/{id}',[OrderController::class,'destroy'])->name('order.destroy');
+//Order Routes
+Route::prefix('order')->group(function(){
+    Route::get('/list',[OrderController::class,'index'])->name('order.list');
+    Route::post('/create',[OrderController::class,'store'])->name('order.create');
+    Route::get('/show/{id}',[OrderController::class,'show'])->name('order.show');
+    Route::put('/update/{id}',[OrderController::class,'update'])->name('order.update');
+    Route::delete('/delete/{id}',[OrderController::class,'destroy'])->name('order.destroy');
+});

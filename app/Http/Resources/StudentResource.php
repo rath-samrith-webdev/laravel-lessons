@@ -19,6 +19,8 @@ class StudentResource extends JsonResource
             'name' => $this->name,
             'age' => $this->age,
             'province' => $this->province,
+            'score' => $this->score,
+            'phone_number' => $this->phone_number,
         ];
     }
 }

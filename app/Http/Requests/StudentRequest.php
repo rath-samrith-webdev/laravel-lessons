@@ -18,8 +18,12 @@ class StudentRequest extends DefaultRequest
         $rules = [
             'name' =>'required',
             'age' =>'required|integer',
-            'phone' =>'required |unique:students,phone,NULL,id,deleted_at,NULL',
         ];
+        if (filled(request()->route('id'))) {
+            $rules['phone_number'] = 'required|unique:students,phone_number,' . request()->route('id') . ',id,deleted_at,NULL';
+        } else {
+            $rules['phone_number'] = 'required|unique:students,phone_number,NULL,id,deleted_at,NULL';
+        }
         return $rules;
     }
 }
