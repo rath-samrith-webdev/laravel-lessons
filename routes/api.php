@@ -20,7 +20,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function(){
-    Route::apiResource('products', ProductController::class);
-    Route::apiResource('categories', CatgoryController::class);
+Route::prefix('products')->group(function(){
+    Route::get('/list', [ProductController::class, 'index']);
+    Route::get('/{id}', [ProductController::class, 'show']);
+    Route::post('/create', [ProductController::class, 'store']);
+    Route::put('/{id}', [ProductController::class, 'update']);
+    Route::delete('/{id}', [ProductController::class, 'destroy']);
+});
+Route::prefix('category')->group(function(){
+    Route::get('/', [CatgoryController::class, 'index']);
+    Route::get('/{id}', [CatgoryController::class, 'show']);
+    Route::post('/create', [CatgoryController::class, 'store']);
+    Route::put('/{id}', [CatgoryController::class, 'update']);
+    Route::delete('/{id}', [CatgoryController::class, 'destroy']);
 });

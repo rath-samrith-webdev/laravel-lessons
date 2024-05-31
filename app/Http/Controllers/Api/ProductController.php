@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data=$request->validated();
-        $img=$request->product_image;
+        $img=$request->image;
         $extension=$img->getClientOriginalExtension();
         $imageName=time().'.'.$extension;
         $data['product_image']=$imageName;

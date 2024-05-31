@@ -37,9 +37,9 @@ class CatgoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Catgory $catgory)
+    public function show(Catgory $category)
     {
-        //
+        return $category;
     }
 
     /**
