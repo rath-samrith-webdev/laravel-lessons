@@ -17,6 +17,7 @@ class CommentResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
+            'post_id' => $this->post_id,
             'user' => PosterDetails::make($this->user)
         ];
     }

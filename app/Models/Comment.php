@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Comment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'content',
+        'post_id',
+        'user_id'
+    ];
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,4 +29,11 @@ Route::prefix('posts')->group(function () {
     Route::get('/{post}', [PostController::class, 'show']);
     Route::put('/update/{post}', [PostController::class, 'update']);
     Route::delete('/delete/{post}', [PostController::class, 'destroy']);
+});
+Route::prefix('comments')->group(function () {
+    Route::get('/', [CommentController::class, 'index']);
+    Route::get('/{comment}', [CommentController::class, 'show']);
+    Route::post('/create', [CommentController::class, 'store']);
+    Route::put('/update/{comment}', [CommentController::class, 'update']);
+    Route::delete('/delete/{comment}', [CommentController::class, 'destroy']);
 });
