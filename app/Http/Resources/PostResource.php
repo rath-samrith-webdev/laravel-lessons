@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class PostResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,8 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'address' => $this->address ? $this->address->country : "",
-            'total_posts' => $this->posts()->get()->count(),
-            'posts' => PostResource::collection($this->posts()->get())
+            'content' => $this->content,
+            'created' => date_format($this->created_at, 'd-m-Y')
         ];
     }
 }
