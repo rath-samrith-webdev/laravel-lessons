@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class CommentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,7 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
-            'created' => date_format($this->created_at, 'd-m-Y'),
-            'posted_by' => PosterDetails::make($this->user),
-            'comments' => CommentResource::collection($this->comments()->get())
+            'user' => PosterDetails::make($this->user)
         ];
     }
 }
